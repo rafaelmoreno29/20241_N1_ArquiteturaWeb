@@ -25,12 +25,12 @@ public class CategoriaCursoController {
 
     @GetMapping()
     public List<CategoriaCurso> obterTodos() {
-        return categoriaCursoRepository.obterTodos();
+        return categoriaCursoRepository.findAll();
     }
 
     @PostMapping()
     public void inserir(@RequestBody CategoriaCurso categoria) {
-        categoriaCursoRepository.inserir(categoria);
+        categoriaCursoRepository.save(categoria);
     }
 
 }
