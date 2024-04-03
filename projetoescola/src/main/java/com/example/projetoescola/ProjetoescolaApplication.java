@@ -41,18 +41,23 @@ public class ProjetoescolaApplication {
 			cursoRepository.save(cADS);
 			cursoRepository.save(cSI);
 
-			System.out.println("Exemplo Listar por nome");
-			listaCursos = cursoRepository.findByNome("Sistemas de Informação");
-			listaCursos.forEach(System.out::println);
+			System.out.println("*** Listar todas as categorias ***");
+			CategoriaCurso categ = categoriaCursoRepository.findCategoriaCursoFetchCursos(1l);
+			System.out.println(categ.getCursos().size());
 
-			System.out.println("Exemplo Listar maior ou igual a 2000");
-			listaCursos = cursoRepository.findByCargaHorariaGreaterThanEqual(2000);
-			listaCursos.forEach(System.out::println);
-
-			System.out.println("Exemplo Listar menor ou igual a 2000");
-			listaCursos = cursoRepository.findByCargaHorariaLessThanEqual(2000);
-			listaCursos.forEach(System.out::println);
-
+			/*
+			 * System.out.println("Exemplo Listar por nome");
+			 * listaCursos = cursoRepository.findByNome("Sistemas de Informação");
+			 * listaCursos.forEach(System.out::println);
+			 * 
+			 * System.out.println("Exemplo Listar maior ou igual a 2000");
+			 * listaCursos = cursoRepository.findByCargaHorariaGreaterThanEqual(2000);
+			 * listaCursos.forEach(System.out::println);
+			 * 
+			 * System.out.println("Exemplo Listar menor ou igual a 2000");
+			 * listaCursos = cursoRepository.findByCargaHorariaLessThanEqual(2000);
+			 * listaCursos.forEach(System.out::println);
+			 */
 		};
 	}
 
