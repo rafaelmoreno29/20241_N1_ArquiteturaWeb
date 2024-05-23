@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projetoescola.models.CategoriaCurso;
 import com.example.projetoescola.repositories.CategoriaCursoRepository;
+
+import jakarta.validation.Valid;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -29,7 +32,7 @@ public class CategoriaCursoController {
     }
 
     @PostMapping()
-    public void inserir(@RequestBody CategoriaCurso categoria) {
+    public void inserir(@Valid @RequestBody CategoriaCurso categoria) {
         categoriaCursoRepository.save(categoria);
     }
 
