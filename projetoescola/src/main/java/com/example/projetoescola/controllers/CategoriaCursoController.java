@@ -4,6 +4,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.projetoescola.models.CategoriaCurso;
 import com.example.projetoescola.repositories.CategoriaCursoRepository;
+
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.List;
@@ -14,6 +17,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 
 @RestController
+@SecurityRequirement(name = "Bearer Authentication")
 @RequestMapping("api/categoria-curso")
 public class CategoriaCursoController {
     private CategoriaCursoRepository categoriaCursoRepository;

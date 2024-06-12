@@ -20,22 +20,25 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 @EnableMethodSecurity
 public class SecurityConfig {
-    private final JwtAuthFilter jwtAuthfilter;
-    private final AuthenticationProvider authenticationProvider;
+        private final JwtAuthFilter jwtAuthfilter;
+        private final AuthenticationProvider authenticationProvider;
 
-    @Bean
-    public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
-        http
-                .csrf(csrf -> csrf.disable())
-                .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(
-                                AntPathRequestMatcher.antMatcher("/api/auth/**"),
-                                AntPathRequestMatcher.antMatcher("/h2-console/**"))
-                        .permitAll()
-                        .anyRequest().authenticated())
-                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
-                .authenticationProvider(authenticationProvider)
-                .addFilterBefore(jwtAuthfilter, UsernamePasswordAuthenticationFilter.class);
-        return http.build();
-    }
+        @Bean
+        public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
+                http
+                                .csrf(csrf -> csrf.disable())
+                                .authorizeHttpRequests(auth -> auth
+                                                .requestMatchers(
+                                                                AntPathRequestMatcher.antMatcher("/api/auth/**"),
+                                                                AntPathRequestMatcher.antMatcher("/h2-console/**"),
+                                                                AntPathRequestMatcher.antMatcher("/swagger-ui/**"),
+                                                                AntPathRequestMatcher.antMatcher("/v3/api-docs/**"),
+                                                                AntPathRequestMatcher.antMatcher("/api-docs/**"))
+                                                .permitAll()
+                                                .anyRequest().authenticated())
+                                .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
+                                .authenticationProvider(authenticationProvider)
+                                .addFilterBefore(jwtAuthfilter, UsernamePasswordAuthenticationFilter.class);
+                return http.build();
+        }
 }

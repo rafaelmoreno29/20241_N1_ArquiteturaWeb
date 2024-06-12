@@ -9,6 +9,8 @@ import com.example.projetoescola.dtos.DadosCursoDTO;
 import com.example.projetoescola.models.Curso;
 import com.example.projetoescola.services.CursoService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -18,6 +20,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @RestController
+@SecurityRequirement(name = "Bearer Authentication")
 @RequestMapping("api/curso")
 public class CursoController {
     private CursoService cursoService;
