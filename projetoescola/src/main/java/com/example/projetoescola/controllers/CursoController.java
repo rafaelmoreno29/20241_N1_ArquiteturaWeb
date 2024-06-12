@@ -9,6 +9,8 @@ import com.example.projetoescola.dtos.DadosCursoDTO;
 import com.example.projetoescola.models.Curso;
 import com.example.projetoescola.services.CursoService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
 import java.util.List;
 
 import org.springframework.http.HttpStatus;
@@ -27,6 +29,7 @@ public class CursoController {
     }
 
     @PostMapping()
+    @SecurityRequirement(name = "Bearer Authentication")
     @ResponseStatus(HttpStatus.CREATED)
     public Curso salvar(@RequestBody CursoDTO curso) {
         return cursoService.salvar(curso);
